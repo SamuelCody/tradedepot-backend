@@ -43,18 +43,18 @@ router.post("/upload", auth, upload.single("image"), async (req, res) => {
     const savedProduct = await newProduct.save();
 
     // Sync to Firestore
-    // const firestoreDoc = firestore
-    //   .collection("products")
-    //   .doc(savedProduct?._id?.toString());
-    // console.log(firestoreDoc);
-    // await firestoreDoc.set({
-    //   name: savedProduct.name,
-    //   image: savedProduct.image.toString("base64"), // Store image as base64 if included
-    //   location: JSON.stringify(savedProduct.location),
-    //   radius: savedProduct.radius,
-    //   user: JSON.stringify(savedProduct.user),
-    //   price: savedProduct.price,
-    // });
+    const firestoreDoc = firestore
+      .collection("products")
+      .doc(savedProduct?._id?.toString());
+    console.log(firestoreDoc);
+    await firestoreDoc.set({
+      name: savedProduct.name,
+      image: savedProduct.image.toString("base64"), // Store image as base64 if included
+      location: JSON.stringify(savedProduct.location),
+      radius: savedProduct.radius,
+      user: JSON.stringify(savedProduct.user),
+      price: savedProduct.price,
+    });
 
     res.status(201).json({ product: savedProduct });
   } catch (error) {
