@@ -15,6 +15,7 @@ app.use(
       "http://localhost:3000",
       "http://localhost:4000",
       "http://localhost:5000",
+      "https://tradedepot-test-task.netlify.app",
     ],
     methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
     credentials: true,
