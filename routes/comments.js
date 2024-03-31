@@ -36,7 +36,11 @@ router.post("/:productId", auth, async (req, res) => {
     await product.save();
 
     const parentCommentId = req.body.parentCommentId;
-    if (parentCommentId !== null || parentCommentId !== undefined) {
+    if (
+      typeof parentCommentId === "string" &&
+      parentCommentId !== null &&
+      parentCommentId !== undefined
+    ) {
       const parentComment = await Comment.findById(parentCommentId).populate(
         "user"
       );
