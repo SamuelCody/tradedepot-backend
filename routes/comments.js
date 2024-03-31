@@ -69,10 +69,10 @@ router.post("/:productId", auth, async (req, res) => {
       });
 
       // Send SMS notification using Termii
-      // await sendSMS(
-      //   parentUser.phone.replace(/\s+/g, "").replace("+", ""),
-      //   `Hi ${parentUser.username}, ${senderUser.username} has replied to your comment on the product: ${product.name}.`
-      // );
+      await sendSMS(
+        parentUser.phone.replace(/\s+/g, "").replace("+", ""),
+        `Hi ${parentUser.username}, ${senderUser.username} has replied to your comment on the product: ${product.name}.`
+      );
 
       // Add reply to parent comment's replies array
       parentComment.replies.push(savedComment._id);
